@@ -8,7 +8,6 @@ package proxectosql;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 
@@ -17,6 +16,10 @@ import javax.swing.table.DefaultTableModel;
  * @author femio23
  */
 public class Venta implements ActionListener{
+    /**Esta clase actuará como Vista.
+     * Poosue tanto os elementos do interface como as accions que estes realizan,
+     * así como varios métodos de chamada, que serán utilizados na clase principal.
+     */
     JFrame marco;
     JPanel p1,p2,p3,p4;
     JTextField nome,idade,codigo;
@@ -26,9 +29,10 @@ public class Venta implements ActionListener{
     DefaultTableModel modelo=new DefaultTableModel();
     Conector c1 = new Conector();
     ProxectoSQL psql=new ProxectoSQL();
-
+    /**
+     * Constructor da clase e inicializador do interface e os seus compoñentes.
+     */
     public Venta(){
-//        Conector c1=cs;
         p1=new JPanel(new FlowLayout());
         n=new JLabel("Nome:");
         i=new JLabel("Idade:");
@@ -83,6 +87,10 @@ public class Venta implements ActionListener{
         
     }
 
+    /**
+     * ActionPerformed único para todas as accions a realizar polos 4 botóns.
+     * @param ae Parámetro que almacena o boton que se activa.
+     */
     @Override
     public void actionPerformed(ActionEvent ae) {
         Object e=ae.getSource();
@@ -98,6 +106,31 @@ public class Venta implements ActionListener{
         if(e==act){
             psql.actualizado(c1, nome, idade, codigo);
         }
+        //Orixinalmente nesta zona realizabase a totalidade de tratamento de 
+        //datos que se recibian da propia BD.
     }
+    /**
+     * Método de chamada para desplegar un JOptionPane.
+     * @param mensaxe Inclue o mensaxe a mostrar.
+     */
+    static public void mensaxeJ(String mensaxe){
+        JOptionPane.showMessageDialog(null, mensaxe);
+    }
+    /**
+     * Método de chamada para desplegar un System.out.println.
+     * @param mensaxe Inclue o mensaxe a mostrar.
+     */
+    static public void mensaxeS(String mensaxe){
+        System.out.println(mensaxe);
+    }
+    /**
+     * Método de chamada para desplegar un System.err.println.
+     * @param mensaxe Inclue o mensaxe a mostrar.
+     */
+    static public void mensaxeR(String mensaxe){
+        System.err.println(mensaxe);
+    }
+    //Orixinalmente , estes tres metodos non existian, pero foron creados para
+    //sustituir a chamadas a Sout e JOption que se realizaban na clase Conector.
     
 }
